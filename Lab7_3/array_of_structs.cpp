@@ -7,7 +7,6 @@ struct TemperatureRecord {
     int day;
     int temperature;
 };
-struct TemperatureRecord records[31];
 // TODO: Step 1 - Define the struct TemperatureRecord
 // It should contain two integer fields: day and temperature.
 
@@ -16,27 +15,33 @@ struct TemperatureRecord records[31];
 const int MAX_DAYS = 31;
 
 // Function Prototypes
-void readTemperatures(TemperatureRecord records[],int &size); // TODO: Fix the parameters
+void readTemperatures(TemperatureRecord records[],int &size); 
 void printTemperatures(const TemperatureRecord records[], int size);
 TemperatureRecord findMin(const TemperatureRecord records[], int size);
 TemperatureRecord findMax(const TemperatureRecord records[], int size);
 double findAverage(const TemperatureRecord records[], int size);
 
 int main() {
-    
+
     TemperatureRecord records[MAX_DAYS];
-    int size = 0;  // Actual number of records read
+    int size = 0;
 
-    // TODO: Step 3 - Call readTemperatures() to load data from file
+    readTemperatures(records, size);
+    printTemperatures(records, size);
 
-    // TODO: Step 4 - Print the temperatures
+    TemperatureRecord minRecord = findMin(records, size);
+    TemperatureRecord maxRecord = findMax(records, size);
+    double average = findAverage(records, size);
 
-    // TODO: Step 5 - Compute and display min, max, and average temperature
-
+    cout << "\nLowest Temperature: Day " << minRecord.day << " at " <<
+        minRecord.temperature << "C" << endl;
+    cout << "Highest Temperature: Day " << maxRecord.day << " at " <<
+        maxRecord.temperature << "C" << endl;
+    cout << "Average Temperature: " << average << "C" << endl;
     return 0;
 }
 
-void readTemperatures(TemperatureRecord records[], int& size) {
+void readTemperatures(TemperatureRecord records[], int &size) {
     ifstream inputFile("temps.txt");
     if (!inputFile) {
         cout << "Error" << endl;
@@ -48,20 +53,34 @@ void readTemperatures(TemperatureRecord records[], int& size) {
             break;
     }
 }
-void printTemperatures(TemperatureRecord records[], int size) {
+void printTemperatures(const TemperatureRecord records[], int size) {
     cout << "Day\tTemp" << endl;
     for (int i = 0; i < MAX_DAYS; i++) {
         cout << records[i].day << "\t" << records[i].temperature << endl;
     }
 }
 
-// TODO: Step 8 - Implement findMin()
-// Return the TemperatureRecord with the lowest temperature
+TemperatureRecord findMin(const TemperatureRecord records[], int size) {
+    TemperatureRecord minRecord = records[0];
+    for (int i = 0; i < size; i++) {
+        if (records[i].temperature < minRecord.temperature) {
+            minRecord = records[i];
+        }
+    }
+    return minRecord;
+}
 
-// TODO: Step 9 - Implement findMax()
-// Return the TemperatureRecord with the highest temperature
+TemperatureRecord findMax(const TemperatureRecord records[], int size) {
+    TemperatureRecord maxRecord = records[0];
+    for (int i = 0; i < size; i++) {
+        if (records[i].temperature > maxRecord.temperature) {
+            maxRecord = records[i];
+        }
+    }
+    return maxRecord;
+}
 
-double findAverage(TemperatureRecord records[], int size) {
+double findAverage(const TemperatureRecord records[], int size) {
     int sum = 0;
     for (int i = 0; i < size; i++) {
         sum += records[i].temperature;
