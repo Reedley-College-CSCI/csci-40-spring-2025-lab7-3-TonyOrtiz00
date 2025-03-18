@@ -12,8 +12,8 @@ const int MAX_DAYS = 31;
 // Function Prototypes
 void readTemperatures(???); // TODO: Fix the parameters
 void printTemperatures(const ???);
-TemperatureRecord findMin(const ???);
-TemperatureRecord findMax(const ???);
+// TemperatureRecord findMin(const ???); for homework part 2
+// TemperatureRecord findMax(const ???); for homework part 2
 double findAverage(const ???);
 
 int main() {
