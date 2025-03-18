@@ -24,7 +24,7 @@ double findAverage(const TemperatureRecord records[], int size);
 
 int main() {
     
-    TemperatureRecord records[MAX_DAYS]
+    TemperatureRecord records[MAX_DAYS];
     int size = 0;  // Actual number of records read
 
     // TODO: Step 3 - Call readTemperatures() to load data from file
@@ -48,9 +48,12 @@ void readTemperatures(TemperatureRecord records[], int& size) {
             break;
     }
 }
-// TODO: Step 6 - Implement readTemperatures()
-// Read from "temps.txt" and store data in the array
-
+void printTemperatures(TemperatureRecord records[], int size) {
+    cout << "Day\tTemp" << endl;
+    for (int i = 0; i < MAX_DAYS; i++) {
+        cout << records[i].day << "\t" << records[i].temperature << endl;
+    }
+}
 // TODO: Step 7 - Implement printTemperatures()
 // Print all stored temperatures in a formatted table
 
