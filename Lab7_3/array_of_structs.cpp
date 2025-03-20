@@ -1,7 +1,7 @@
+//Tony Ortiz Rangel
 #include <iostream>
 #include <fstream>
 using namespace std;
-
 
 struct TemperatureRecord {
     int day;
